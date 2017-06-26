@@ -33,7 +33,7 @@ class ASYD < Sinatra::Application
 
   # Check if ASYD was installed or user is logged in before doing anything
   # Now also checks if ASYD must update
-  before /^(?!\/(setup))(?!\/(login))(?!\/(logout))(?!\/(update))(?!\/(confirm_update))(^(?!\/(password\/request)))(^(?!\/(password\/reset)))(^(?!(\/private)?\/api\/))/ do
+  before /^(?!\/(setup))(?!\/(login))(?!\/(logout))(?!\/(update))(?!\/(confirm_update))(^(?!\/(password\/request)))(^(?!\/(password\/reset)))(^(?!(\/private)?\/api\/))/, :mustermann_opts => { :type => :regexp, :check_anchors => false } do
     if !File.directory? 'data'
       redirect '/setup'
     else

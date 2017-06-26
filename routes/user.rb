@@ -1,5 +1,5 @@
 class ASYD < Sinatra::Application
-  before /^(\/user|team)/ do
+  before /^(\/user|team)/, :mustermann_opts => { :type => :regexp, :check_anchors => false } do
     unless user and user.is_admin?
       redirect "/"
     end
